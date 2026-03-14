@@ -1,0 +1,12 @@
+{
+  "image": "image_0025.png",
+  "annotations": [
+    {
+      "label": "satellite",
+      "x": 117,
+      "y": 77,
+      "w": 60,
+      "h": 124
+    }
+  ]
+}

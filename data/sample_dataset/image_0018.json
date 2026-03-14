@@ -1,0 +1,26 @@
+{
+  "image": "image_0018.png",
+  "annotations": [
+    {
+      "label": "satellite",
+      "x": 62,
+      "y": 189,
+      "w": 90,
+      "h": 59
+    },
+    {
+      "label": "earth",
+      "x": 160,
+      "y": 158,
+      "w": 40,
+      "h": 68
+    },
+    {
+      "label": "person",
+      "x": 118,
+      "y": 2,
+      "w": 26,
+      "h": 90
+    }
+  ]
+}

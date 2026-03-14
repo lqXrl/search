@@ -1,0 +1,19 @@
+{
+  "image": "image_0048.png",
+  "annotations": [
+    {
+      "label": "face",
+      "x": 28,
+      "y": 65,
+      "w": 40,
+      "h": 77
+    },
+    {
+      "label": "earth",
+      "x": 129,
+      "y": 70,
+      "w": 74,
+      "h": 90
+    }
+  ]
+}

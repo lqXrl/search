@@ -1,0 +1,19 @@
+{
+  "image": "image_0013.png",
+  "annotations": [
+    {
+      "label": "face",
+      "x": 130,
+      "y": 94,
+      "w": 31,
+      "h": 88
+    },
+    {
+      "label": "person",
+      "x": 101,
+      "y": 144,
+      "w": 46,
+      "h": 92
+    }
+  ]
+}

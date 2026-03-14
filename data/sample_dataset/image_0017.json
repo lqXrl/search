@@ -1,0 +1,26 @@
+{
+  "image": "image_0017.png",
+  "annotations": [
+    {
+      "label": "person",
+      "x": 35,
+      "y": 34,
+      "w": 108,
+      "h": 55
+    },
+    {
+      "label": "person",
+      "x": 118,
+      "y": 102,
+      "w": 78,
+      "h": 50
+    },
+    {
+      "label": "satellite",
+      "x": 131,
+      "y": 19,
+      "w": 108,
+      "h": 99
+    }
+  ]
+}

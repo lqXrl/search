@@ -1,0 +1,19 @@
+{
+  "image": "image_0001.png",
+  "annotations": [
+    {
+      "label": "person",
+      "x": 185,
+      "y": 109,
+      "w": 61,
+      "h": 78
+    },
+    {
+      "label": "earth",
+      "x": 70,
+      "y": 114,
+      "w": 33,
+      "h": 101
+    }
+  ]
+}

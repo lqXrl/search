@@ -1,0 +1,26 @@
+{
+  "image": "image_0012.png",
+  "annotations": [
+    {
+      "label": "box",
+      "x": 69,
+      "y": 20,
+      "w": 101,
+      "h": 87
+    },
+    {
+      "label": "satellite",
+      "x": 113,
+      "y": 70,
+      "w": 79,
+      "h": 104
+    },
+    {
+      "label": "satellite",
+      "x": 101,
+      "y": 109,
+      "w": 78,
+      "h": 51
+    }
+  ]
+}

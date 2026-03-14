@@ -1,0 +1,48 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Vision Desktop App — Web</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px }
+    .box { border: 1px solid #ddd; padding: 10px; margin: 10px 0; }
+  </style>
+</head>
+<body>
+  <h1>Vision Desktop App (Веб)</h1>
+  <div class="box">
+    <h3>Загрузить изображение для предсказания</h3>
+    <form id="uform" method="post" enctype="multipart/form-data" action="/api/upload">
+      <select name="model" id="model_select">
+        {% for m in models %}
+        <option value="{{m}}">{{m}}</option>
+        {% endfor %}
+      </select>
+      <input type="file" name="file" accept="image/*" required>
+      <button type="submit">Загрузить и предсказать</button>
+    </form>
+  </div>
+  <div class="box">
+    <h3>Массовая сортировка (Bulk Import)</h3>
+    <form id="bform" method="post" action="/api/bulk_import">
+      <input type="text" name="folder" placeholder="Путь к папке на сервере (например, data/incoming)" required>
+      <select name="model">
+        {% for m in models %}
+        <option value="{{m}}">{{m}}</option>
+        {% endfor %}
+      </select>
+      <button type="submit">Запустить</button>
+    </form>
+    <div id="bulk_res"></div>
+  </div>
+  <script>
+  document.getElementById('bform').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    let fd = new FormData(e.target);
+    let response = await fetch('/api/bulk_import', {method: 'POST', body: fd});
+    let json = await response.json();
+    document.getElementById('bulk_res').innerText = JSON.stringify(json, null, 2);
+  }, false);
+  </script>
+</body>
+</html>

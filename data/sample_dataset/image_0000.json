@@ -1,0 +1,12 @@
+{
+  "image": "image_0000.png",
+  "annotations": [
+    {
+      "label": "face",
+      "x": 194,
+      "y": 54,
+      "w": 23,
+      "h": 94
+    }
+  ]
+}
