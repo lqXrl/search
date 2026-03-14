@@ -345,7 +345,15 @@ class AnnotatorWidget(QWidget):
         for r in self.image_label.rects:
             key = f"{r.x()}_{r.y()}_{r.width()}_{r.height()}"
             label = self.label_map.get(key, self.label_line.text().strip() or 'object')
-            ann.append({'label': label, 'x': r.x(), 'y': r.y(), 'w': r.width(), 'h': r.height()})
+            # сохраняем как метку, так и явное название объекта, заданное учителем
+            ann.append({
+                'label': label,
+                'object_name': label,
+                'x': r.x(),
+                'y': r.y(),
+                'w': r.width(),
+                'h': r.height()
+            })
         out_path = os.path.splitext(self.image_path)[0] + '.json'
         with open(out_path, 'w', encoding='utf-8') as f:
             json.dump({'image': os.path.basename(self.image_path), 'annotations': ann}, f, ensure_ascii=False, indent=2)

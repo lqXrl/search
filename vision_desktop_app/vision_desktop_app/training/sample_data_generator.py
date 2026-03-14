@@ -23,7 +23,14 @@ def generate_sample(dataset_dir, n_images=20, size=(256, 256)):
             cls = random.choice(CLASS_NAMES)
             draw.rectangle([x, y, x+w, y+h], outline=(255,255,255), width=2)
             draw.text((x+2, y+2), cls, fill=(255,255,255))
-            anns.append({'label': cls, 'x': x, 'y': y, 'w': w, 'h': h})
+            anns.append({
+                'label': cls,
+                'object_name': cls,
+                'x': x,
+                'y': y,
+                'w': w,
+                'h': h
+            })
         path = os.path.join(dataset_dir, f'image_{i:04d}.png')
         img.save(path)
         # save annotation JSON

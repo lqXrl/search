@@ -239,7 +239,8 @@ class MainWindow(QMainWindow):
                 y = r.get('y')
                 w = r.get('w')
                 h = r.get('h')
-                ann_obj = {'label': ann}
+                # сохраняем и метку, и название объекта так, как его указал учитель
+                ann_obj = {'label': ann, 'object_name': ann}
                 if None not in (x, y, w, h):
                     ann_obj.update({'x': int(x), 'y': int(y), 'w': int(w), 'h': int(h)})
                 json_path = os.path.splitext(candidate)[0] + '.json'
