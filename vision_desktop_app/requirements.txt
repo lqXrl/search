@@ -1,8 +1,0 @@
-tensorflow>=2.12
-PySide6>=6.5
-opencv-python
-numpy
-pillow
-matplotlib
-tqdm
-Flask
