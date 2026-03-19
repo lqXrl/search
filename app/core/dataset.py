@@ -140,13 +140,18 @@ def build_datasets_from_db(
 ) -> tuple["SpaceDataset", "SpaceDataset"]:
     """Строит датасеты train/val из SQLite файла датасета (созданного вкладкой БД)."""
     import sqlite3
+    from config import ALL_LABELS
 
     classes = MODEL_DEFS[model_id]["classes"]
     class_to_idx = {k: i for i, k in enumerate(sorted(classes))}
 
+    # Обратный словарь: русское название → ключ класса (например, "Космонавт" → "cosmonaut")
+    display_to_key = {v.lower(): k for k, v in classes.items()}
+
     conn = sqlite3.connect(db_path)
     train_samples: list = []
     val_samples:   list = []
+    found_labels: set = set()
 
     for split, target in [("train", train_samples),
                           ("val",   val_samples),
@@ -161,17 +166,28 @@ def build_datasets_from_db(
             (split,)
         ).fetchall()
         for path, label, bx, by, bw, bh in rows:
-            if label not in class_to_idx:
+            found_labels.add(label)
+            # Прямое совпадение по ключу (например, "cosmonaut")
+            idx = class_to_idx.get(label)
+            if idx is None:
+                # Попытка сопоставить по русскому названию (например, "Космонавт")
+                key = display_to_key.get(label.lower())
+                if key:
+                    idx = class_to_idx[key]
+            if idx is None:
                 continue
             bbox = ann_io.BBox(int(bx), int(by), int(bw), int(bh)) if bx is not None else None
-            target.append((path, class_to_idx[label], bbox))
+            target.append((path, idx, bbox))
 
     conn.close()
 
     if not train_samples:
+        expected = list(classes.keys()) + list(classes.values())
         raise ValueError(
             f"В базе нет обучающих примеров для модели '{model_id}'.\n"
-            "Убедитесь, что датасет создан с аннотациями для этой модели."
+            f"Ожидаемые метки: {list(classes.keys())} или {list(classes.values())}\n"
+            f"Найденные метки в базе: {sorted(found_labels)[:10]}\n"
+            "Убедитесь, что в шаге 2 «Колонка метки» указывает на колонку с классами, а не с именами файлов."
         )
     if not val_samples:
         # резервный вариант: использовать 20% от обучающей выборки как val
